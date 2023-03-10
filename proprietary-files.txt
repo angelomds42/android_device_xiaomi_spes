@@ -679,6 +679,7 @@ vendor/etc/init/android.hardware.gatekeeper@1.0-service-qti.rc
 vendor/lib64/hw/android.hardware.gatekeeper@1.0-impl-qti.so
 
 # GNSS
+vendor/app/CACertService/CACertService.apk
 -vendor/etc/vintf/manifest/android.hardware.gnss@2.1-service-qti.xml
 -vendor/etc/vintf/manifest/vendor.qti.gnss@4.0-service.xml
 vendor/bin/hw/android.hardware.gnss@2.1-service-qti
@@ -739,6 +740,7 @@ vendor/lib64/vendor.qti.gnss@2.1.so
 vendor/lib64/vendor.qti.gnss@3.0.so
 vendor/lib64/vendor.qti.gnss@4.0-service.so
 vendor/lib64/vendor.qti.gnss@4.0.so
+vendor/lib64/vendor.qti.hardware.cacert@1.0.so
 
 # GPS
 vendor/etc/apdr.conf
