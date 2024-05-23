@@ -420,13 +420,13 @@
       "PowerHint": "LAUNCH",
       "Node": "DDRLittleClusterMinFreq",
       "Duration": 3000,
-      "Value": "15960"
+      "Value": "11863"
     },
     {
       "PowerHint": "LAUNCH",
       "Node": "DDRBigClusterMinFreq",
       "Duration": 3000,
-      "Value": "15960"
+      "Value": "11863"
     },
     {
       "PowerHint": "EXPENSIVE_RENDERING",
@@ -438,7 +438,7 @@
       "PowerHint": "EXPENSIVE_RENDERING",
       "Node": "GPUMinFreq",
       "Duration": 0,
-      "Value": "0"
+      "Value": "3"
     },
     {
       "PowerHint": "EXPENSIVE_RENDERING",
