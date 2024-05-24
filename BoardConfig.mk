@@ -208,9 +208,6 @@ TARGET_COPY_OUT_VENDOR := vendor
 BOARD_VENDOR := xiaomi
 TARGET_BOARD_PLATFORM := bengal
 
-# Power
-TARGET_TAP_TO_WAKE_NODE := "/sys/touchpanel/double_tap"
-
 # Properties
 TARGET_ODM_PROP += $(DEVICE_PATH)/odm.prop
 TARGET_PRODUCT_PROP += $(DEVICE_PATH)/product.prop
@@ -246,6 +243,7 @@ BOARD_VNDK_VERSION := current
 NEED_AIDL_NDK_PLATFORM_BACKEND := true
 
 # Sepolicy
+include device/lineage/sepolicy/libperfmgr/sepolicy.mk
 include device/qcom/sepolicy_vndr/SEPolicy.mk
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
 ifdef CR_VERSION
