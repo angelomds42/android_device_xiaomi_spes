@@ -3,8 +3,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
-
 # Enable project quotas and case folding
+
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
 # Enable updating of APEXes
@@ -35,6 +35,9 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # API level
 PRODUCT_SHIPPING_API_LEVEL := 30
+
+# Signing build
+TARGET_BUILD_FULLY_SIGN := true
 
 # A/B
 AB_OTA_POSTINSTALL_CONFIG += \
