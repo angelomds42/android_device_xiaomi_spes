@@ -318,6 +318,12 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@4.1.vendor
 
+# Kernel
+TARGET_KERNEL_DIR ?= device/xiaomi/spes-kernel
+LOCAL_KERNEL := $(TARGET_KERNEL_DIR)/Image
+
+PRODUCT_COPY_FILES += $(LOCAL_KERNEL):kernel
+
 # Lights
 PRODUCT_PACKAGES += \
     android.hardware.light-service.xiaomi
