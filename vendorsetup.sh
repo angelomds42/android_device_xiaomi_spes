@@ -10,4 +10,4 @@ sleep 1
 rm -rf hardware/google/pixel/kernel_headers/Android.bp
 
 # Remove hardware/lineage/compat to avoid conflicts
-rm -rf hardware/lineage/compat/Android.bp
+rm -rf hardware/statix/compat/Android.bp
