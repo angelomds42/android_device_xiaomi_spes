@@ -530,3 +530,7 @@ PRODUCT_PACKAGES += \
 # No Cutout Overlay
 PRODUCT_PACKAGES += \
     NoCutoutOverlay
+    
+# SystemUI Overlay
+PRODUCT_PACKAGES += \
+    SystemUIOverlaySpes
