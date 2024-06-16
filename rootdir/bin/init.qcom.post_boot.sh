@@ -60,13 +60,6 @@ echo N > /sys/module/lpm_levels/system/perf/perf-l2-gdhs/suspend_enabled
 setprop vendor.post_boot.parsed 1
 
 # power/perf tunings for khaje
-# Core control parameters on big
-echo 0 > /sys/devices/system/cpu/cpu0/core_ctl/enable
-echo 2 > /sys/devices/system/cpu/cpu4/core_ctl/min_cpus
-echo 40 > /sys/devices/system/cpu/cpu4/core_ctl/busy_down_thres
-echo 60 > /sys/devices/system/cpu/cpu4/core_ctl/busy_up_thres
-echo 100 > /sys/devices/system/cpu/cpu4/core_ctl/offline_delay_ms
-echo 4 > /sys/devices/system/cpu/cpu4/core_ctl/task_thres
 
 # sched_load_boost as -6 is equivalent to target load as 85. It is per cpu tunable.
 echo -6 >  /sys/devices/system/cpu/cpu0/sched_load_boost
@@ -119,10 +112,3 @@ do
         echo 10 > $latfloor/polling_interval
     done
 done
-
-# colcoation v3 disabled
-echo 0 > /proc/sys/kernel/sched_min_task_util_for_boost
-echo 0 > /proc/sys/kernel/sched_min_task_util_for_colocation
-
-# Turn off scheduler boost at the end
-echo 0 > /proc/sys/kernel/sched_boost
