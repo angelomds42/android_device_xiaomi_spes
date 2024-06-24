@@ -22,3 +22,9 @@ install_symlink {
     installed_location: "firmware/wlan/qca_cld/qca6490/WCNSS_qcom_cfg.ini",
     symlink_target: "/vendor/etc/wifi/qca6490/WCNSS_qcom_cfg.ini",
 }
+install_symlink {
+    name: "CneApp.libvndfwk_detect_jni.qti_symlink",
+    vendor: true,
+    installed_location: "app/CneApp/lib/arm64/libvndfwk_detect_jni.qti.so",
+    symlink_target: "/vendor/lib64/libvndfwk_detect_jni.qti.so",
+}
