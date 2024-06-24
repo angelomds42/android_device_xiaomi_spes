@@ -510,6 +510,11 @@ PRODUCT_COPY_FILES += \
 # VNDK
 PRODUCT_EXTRA_VNDK_VERSIONS := 30
 
+# WiFi firmware symlinks
+PRODUCT_PACKAGES += \
+    firmware_wlan_mac.bin_symlink \
+    firmware_WCNSS_qcom_cfg.ini_symlink
+
 # WiFi
 PRODUCT_PACKAGES += \
     android.hardware.wifi-service \
