@@ -464,6 +464,12 @@ PRODUCT_PACKAGES += \
     android.frameworks.sensorservice@1.0 \
     libsensorndkbridge
 
+# Kernel
+TARGET_KERNEL_DIR ?= $(LOCAL_PATH)/prebuilts
+LOCAL_KERNEL := $(TARGET_KERNEL_DIR)/Image.gz
+
+PRODUCT_COPY_FILES += $(LOCAL_KERNEL):kernel
+
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
