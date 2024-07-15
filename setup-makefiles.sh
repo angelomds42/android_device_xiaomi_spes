@@ -9,7 +9,6 @@ set -e
 
 DEVICE=spes
 VENDOR=xiaomi
-INITIAL_COPYRIGHT_YEAR=2022
 
 # Load extract_utils and do some sanity checks
 MY_DIR="${BASH_SOURCE%/*}"
@@ -24,13 +23,12 @@ if [ ! -f "${HELPER}" ]; then
 fi
 source "${HELPER}"
 
-# Initialize the helper for common
-setup_vendor "${DEVICE}" "${VENDOR}" "${ANDROID_ROOT}" false
+# Initialize the helper
+setup_vendor "${DEVICE}" "${VENDOR}" "${ANDROID_ROOT}"
 
-# Copyright headers and guards
-write_headers "${DEVICE}"
+# Warning headers and guards
+write_headers
 
-# The standard common blobs
 write_makefiles "${MY_DIR}/proprietary-files.txt" true
 
 # Finish
