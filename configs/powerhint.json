@@ -505,6 +505,47 @@
       "Value": "15960"
     },
     {
+      "PowerHint": "LAUNCH",
+      "Type": "DoHint",
+      "Value": "LAUNCH_EXTEND"
+    },
+    {
+       "PowerHint": "LAUNCH_EXTEND",
+       "Node": "CPUBigClusterMaxFreq",
+       "Duration": 2000,
+       "Value": "2400000"
+     },
+     {
+       "PowerHint": "LAUNCH_EXTEND",
+       "Node": "CPULittleClusterMaxFreq",
+       "Duration": 2000,
+       "Value": "1900800"
+     },
+     {
+       "PowerHint": "LAUNCH_EXTEND",
+       "Node": "BGUClampMaxBoost",
+       "Duration": 2000,
+       "Value": "51.20"
+     },
+     {
+       "PowerHint": "LAUNCH_EXTEND",
+       "Node": "Dex2oatUClampMaxBoost",
+       "Duration": 2000,
+       "Value": "60.50"
+     },
+     {
+       "PowerHint": "LAUNCH_EXTEND",
+       "Node": "CPULittleClusterDownRateLimitUs",
+       "Duration": 2000,
+       "Value": "5000"
+     },
+     {
+      "PowerHint": "LAUNCH_EXTEND",
+      "Node": "CPUBigClusterDownRateLimitUs",
+      "Duration": 2000,
+      "Value": "20000"
+    },
+    {
       "PowerHint": "CAMERA_LAUNCH",
       "Node": "EnergyAware",
       "Duration": 1000,
