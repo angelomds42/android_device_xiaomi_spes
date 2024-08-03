@@ -195,6 +195,64 @@
       "ResetOnInit": true
     },
     {
+      "Name": "BGUClampMaxBoost",
+      "Path": "/dev/cpuctl/background/cpu.uclamp.max",
+      "Values": [
+        "10.00",
+        "51.20"
+      ],
+      "DefaultIndex": 0,
+      "ResetOnInit": true
+    },
+    {
+      "Name": "Dex2oatUClampMaxBoost",
+      "Path": "/dev/cpuctl/dex2oat/cpu.uclamp.max",
+      "Values": [
+        "40.00",
+        "60.50"
+      ],
+      "DefaultIndex": 0,
+      "ResetOnInit": true
+    },
+    {
+      "Name": "CAMUClampBoost",
+      "Path": "/dev/cpuctl/camera-daemon/cpu.uclamp.min",
+      "Values": [
+        "76.50",
+        "25.00",
+        "0.00"
+      ],
+      "ResetOnInit": true
+    },
+    {
+      "Name": "TAUClampBoost",
+      "Path": "/dev/cpuctl/top-app/cpu.uclamp.min",
+      "Values": [
+        "76.50",
+        "1.00"
+      ],
+      "ResetOnInit": true
+    },
+    {
+      "Name": "FGUClampBoost",
+      "Path": "/dev/cpuctl/foreground/cpu.uclamp.min",
+      "Values": [
+        "15.90",
+        "0.00"
+      ],
+      "ResetOnInit": true
+    },
+    {
+      "Name": "MLUclampBoost",
+      "Path": "/dev/cpuctl/nnapi-hal/cpu.uclamp.min",
+      "Values": [
+          "22.50",
+          "81.20"
+      ],
+      "DefaultIndex": 0,
+      "ResetOnInit": true
+    },
+    {
       "Name": "DDRLittleClusterMinFreq",
       "Path": "/sys/class/devfreq/soc:qcom,cpu0-cpu-ddr-lat/min_freq",
       "Values": [
@@ -334,6 +392,30 @@
       "Node": "CPUBigClusterMinFreq",
       "Duration": 3000,
       "Value": "2400000"
+    },
+    {
+      "PowerHint": "LAUNCH",
+      "Node": "BGUClampMaxBoost",
+      "Duration": 3000,
+      "Value": "51.20"
+    },
+    {
+      "PowerHint": "LAUNCH",
+      "Node": "Dex2oatUClampMaxBoost",
+      "Duration": 3000,
+      "Value": "60.50"
+    },
+    {
+      "PowerHint": "LAUNCH",
+      "Node": "TAUClampBoost",
+      "Duration": 3000,
+      "Value": "76.50"
+    },
+    {
+      "PowerHint": "LAUNCH",
+      "Node": "FGUClampBoost",
+      "Duration": 3000,
+      "Value": "15.90"
     },
     {
       "PowerHint": "LAUNCH",
