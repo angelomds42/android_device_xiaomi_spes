@@ -756,6 +756,23 @@
       "Node": "CPUBigClusterDownRateLimitUs",
       "Duration": 5000,
       "Value": "20000"
+    },
+    {
+      "PowerHint": "DISPLAY_IDLE",
+      "Type": "EndHint",
+      "Value": "DISPLAY_UPDATE_IMMINENT"
+    },
+    {
+      "PowerHint": "DISPLAY_UPDATE_IMMINENT",
+      "Node": "CPULittleClusterDownRateLimitUs",
+      "Duration": 50,
+      "Value": "5000"
+    },
+    {
+      "PowerHint": "DISPLAY_UPDATE_IMMINENT",
+      "Node": "CPUBigClusterDownRateLimitUs",
+      "Duration": 50,
+      "Value": "20000"
     }
   ]
 }
