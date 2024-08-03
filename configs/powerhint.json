@@ -799,6 +799,18 @@
       "Node": "CPUBigClusterDownRateLimitUs",
       "Duration": 50,
       "Value": "20000"
+    },
+    {
+      "PowerHint": "GAME",
+      "Node": "CPULittleClusterDownRateLimitUs",
+      "Duration": 0,
+      "Value": "500"
+    },
+    {
+      "PowerHint": "GAME",
+      "Node": "CPUBigClusterDownRateLimitUs",
+      "Duration": 0,
+      "Value": "3000"
     }
   ]
 }
