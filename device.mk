@@ -389,6 +389,17 @@ DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
+PRODUCT_PACKAGES += \
+    SpesApertureOverlay \
+    SpesCarrierConfigOverlay \
+    SpesDialerOverlay \
+    SpesFrameworksOverlay \
+    SpesLineageSDKOverlay \
+    SpesSettingsOverlay \
+    SpesSettingsProviderOverlay \
+    SpesSystemUIOverlay \
+    SpesTelephonyOverlay \
+    SpesWifiOverlay
 
 # Power
 PRODUCT_PACKAGES += \
@@ -480,7 +491,6 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # Telephony
 PRODUCT_PACKAGES += \
-    CarrierConfigOverlay \
     extphonelib \
     extphonelib-product \
     extphonelib.xml \
@@ -536,7 +546,6 @@ PRODUCT_PACKAGES += \
     libwifi-hal-qcom \
     vendor.qti.hardware.wifi.hostapd@1.2.vendor \
     vendor.qti.hardware.wifi.supplicant@2.2.vendor \
-    WifiResCommon \
     wpa_supplicant \
     wpa_supplicant.conf
 
