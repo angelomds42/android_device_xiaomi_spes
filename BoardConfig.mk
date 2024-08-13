@@ -94,8 +94,8 @@ ODM_MANIFEST_K7TN_FILES := $(DEVICE_PATH)/configs/vintf/manifest_k7tn.xml
 BOARD_USES_LEGACY_IMS_SEPOLICY := true
 
 # Init
-TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):init_xiaomi_spes
-TARGET_RECOVERY_DEVICE_MODULES := init_xiaomi_spes
+TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_spes
+TARGET_RECOVERY_DEVICE_MODULES := libinit_spes
 
 # Kernel
 BOARD_KERNEL_BASE        := 0x00000000
