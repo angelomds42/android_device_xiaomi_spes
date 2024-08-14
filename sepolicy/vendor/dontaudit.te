@@ -39,6 +39,7 @@ dontaudit {
 
 # clear up tracing denials on user build
 dontaudit {
+  atrace
   hal_atrace_default
   traced_probes
 } debugfs_tracing_debug:file rw_file_perms;
