@@ -148,6 +148,11 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.btconfigstore@1.0.vendor \
     vendor.qti.hardware.btconfigstore@2.0.vendor
 
+PRODUCT_PACKAGES += \
+  liba2dpoffload \
+  android.hardware.bluetooth.a2dp@1.0-impl \
+  android.hardware.bluetooth.a2dp@1.0-service
+
 # Boot control HAL
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.2-impl-qti \
