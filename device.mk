@@ -452,7 +452,6 @@ PRODUCT_PACKAGES += \
 # Rootdir
 PRODUCT_PACKAGES += \
     init.mdm.sh \
-    init.qcom.post_boot.sh \
     init.qcom.sh \
     init.qcom.usb.sh
 
