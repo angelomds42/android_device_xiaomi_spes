@@ -95,6 +95,11 @@ on property:sys.boot_completed=1
     write /dev/cpuctl/foreground/cpu.uclamp.min 0.00
     write /dev/cpuctl/system/cpu.uclamp.min 0.00
 
+    # Set uclamp.max for some groups, which could indicate cpu importance used in scheduling
+    write /dev/cpuctl/background/cpu.uclamp.max 51.20
+    write /dev/cpuctl/system-background/cpu.uclamp.max 51.20
+    write /dev/cpuctl/dex2oat/cpu.uclamp.max 61.50
+
     # Runtime fs tuning
     write /sys/block/sda/queue/nr_requests 128
     write /sys/block/sda/queue/iostats 1
