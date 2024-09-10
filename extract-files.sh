@@ -60,6 +60,9 @@ function blob_fixup() {
         vendor/lib64/camera/components/com.qti.node.mialgocontrol.so)
             llvm-strip --strip-debug "${2}"
             ;;
+        vendor/lib64/libwvhidl.so)
+            "${PATCHELF}" --replace-needed "libcrypto.so" "libcrypto-v33.so" "${2}"
+            ;;
     esac
 }
 
