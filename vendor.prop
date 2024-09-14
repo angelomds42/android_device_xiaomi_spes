@@ -1,7 +1,7 @@
 # Audio
 aaudio.hw_burst_min_usec=2000
 aaudio.mmap_exclusive_policy=2
-aaudio.mmap_policy=1
+aaudio.mmap_policy=2
 persist.vendor.audio.avs.afe_api_version=2
 persist.vendor.audio.fluence.speaker=true
 persist.vendor.audio.fluence.voicecall=true
@@ -70,7 +70,6 @@ vendor.voice.path.for.pcm.voip=true
 # Bluetooth
 persist.bluetooth.a2dp_offload.cap=sbc-aac-aptx-aptxhd-ldac
 persist.bluetooth.a2dp_offload.disabled=false
-persist.vendor.btstack.enable.splita2dp=true
 persist.vendor.bt.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac
 persist.vendor.qcom.bluetooth.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac
 persist.vendor.qcom.bluetooth.aac_vbr_ctl.enabled=false
@@ -78,7 +77,6 @@ persist.vendor.qcom.bluetooth.twsp_state.enabled=false
 persist.vendor.qcom.bluetooth.scram.enabled=false
 persist.vendor.qcom.bluetooth.soc=cherokee
 ro.bluetooth.a2dp_offload.supported=true
-vendor.bluetooth.soc=cherokee
 vendor.qcom.bluetooth.soc=cherokee
 
 # Camera
@@ -107,14 +105,18 @@ persist.vendor.dpmhalservice.enable=1
 # DRM
 drm.service.enabled=true
 
+# FS-verity
+ro.apk_verity.mode=2
+
 # FRP
 ro.frp.pst=/dev/block/bootdevice/by-name/frp
 
 # Graphics
+debug.sf.disable_backpressure=1
+debug.sf.enable_transaction_tracing=false
 debug.sf.disable_client_composition_cache=1
-debug.sf.enable_gl_backpressure=1
-debug.sf.use_phase_offsets_as_durations=1
 debug.sf.enable_egl_image_tracker=1
+debug.sf.use_phase_offsets_as_durations=1
 debug.sf.late.sf.duration=10500000
 debug.sf.late.app.duration=20500000
 debug.sf.early.sf.duration=16000000
@@ -133,7 +135,6 @@ ro.surface_flinger.supports_background_blur=0
 ro.surface_flinger.force_hwc_copy_for_virtual_displays=true
 ro.surface_flinger.has_HDR_display=true
 ro.surface_flinger.has_wide_color_display=true
-ro.surface_flinger.max_frame_buffer_acquired_buffers=3
 ro.surface_flinger.max_virtual_display_dimension=4096
 ro.surface_flinger.protected_contents=true
 ro.surface_flinger.set_idle_timer_ms=4000
@@ -151,31 +152,29 @@ vendor.display.disable_excl_rect_partial_fb=1
 vendor.display.disable_hw_recovery_dump=1
 vendor.display.disable_idle_time_hdr=1
 vendor.display.disable_idle_time_video=1
-vendor.display.disable_layer_stitch=1
-vendor.display.disable_rotator_downscale=1
+vendor.display.disable_layer_stitch=0
 vendor.display.disable_rotator_ubwc=1
-vendor.display.disable_rounded_corner_thread=1
 vendor.display.disable_scaler=0
 vendor.display.enable_allow_idle_fallback=1
 vendor.display.enable_async_powermode=1
 vendor.display.enable_camera_smooth=1
 vendor.display.enable_optimize_refresh=1
-vendor.display.enable_perf_hint_large_comp_cycle=1
 vendor.display.enable_posted_start_dyn=1
-vendor.display.enable_rc_support=1
-vendor.display.enable_rounded_corner=0
-vendor.display.qdcm.disable_factory_mode=1
-vendor.display.qdcm.mode_combine=1
 vendor.display.normal_noc_efficiency_factor=0.85
 vendor.display.secure_preview_buffer_format=420_sp
-vendor.display.use_smooth_motion=0
-vendor.gralloc.disable_ubwc=0
-vendor.gralloc.secure_preview_buffer_format=420_sp
+vendor.display.svi.config=1
+vendor.display.svi.config_path=/vendor/etc/SVIConfig.xml
+vendor.display.use_smooth_motion=1
+vendor.display.defer_fps_frame_count=2
 vendor.display.override_doze_mode=1
+
+# FUSE passthrough
+persist.sys.fuse.passthrough.enable=true
 
 # Media Codecs
 debug.stagefright.omx_default_rank=0
 debug.stagefright.omx_default_rank.sw-audio=1
+debug.stagefright.c2inputsurface=-1
 vendor.media.target.version=3
 vendor.sys.media.target.version=3
 
@@ -192,25 +191,19 @@ persist.sys.tcpdump.enable=false
 persist.vendor.data.iwlan.enable=true
 persist.vendor.radio.add_power_save=1
 persist.vendor.radio.apm_sim_not_pwdn=1
-persist.vendor.radio.atfwd.start=true
+persist.vendor.radio.apm_sim_not_pwdn=1
 persist.vendor.radio.custom_ecc=1
 persist.vendor.radio.data_con_rprt=1
-persist.vendor.radio.data_ltd_sys_ind=1
-persist.vendor.radio.enableadvancedscan=true
 persist.vendor.radio.enable_temp_dds=true
-persist.vendor.radio.force_ltd_sys_ind=1
-persist.vendor.radio.manual_nw_rej_ct=1
-persist.vendor.radio.mt_sms_ack=30
+persist.vendor.radio.enableadvancedscan=true
 persist.vendor.radio.procedure_bytes=SKIP
-persist.vendor.radio.process_sups_ind=1
 persist.vendor.radio.rat_on=combine
 persist.vendor.radio.sib16_support=1
-persist.vendor.radio.snapshot_enabled=1
-persist.vendor.radio.snapshot_timer=5
 vendor.rild.libpath=/vendor/lib64/libril-qc-hal-qmi.so
 ro.com.android.dataroaming=false
-ro.telephony.default_network=22,22
+ro.telephony.default_network=33,33
 ro.vendor.se.type=HCE,UICC
+sys.vendor.shutdown.waittime=500
 telephony.lteOnCdmaDevice=1
 
 # QSPM
@@ -243,9 +236,6 @@ ro.vendor.audio.soundtrigger.xatx.gmm.user.level=40
 ro.vendor.audio.soundtrigger.xatx.vop.level=10
 ro.vendor.audio.soundtrigger=sva
 
-# Thermal
-sys.thermal.data.path=/data/vendor/thermal/
-
 # USB
 vendor.usb.diag.func.name=diag
 vendor.usb.dpl.inst.name=dpl
@@ -260,8 +250,7 @@ vendor.usb.use_gadget_hal=0
 wifi.aware.interface=wifi-aware0
 
 # WLAN
-persist.vendor.sys.cnd.iwlan=1
-ro.hardware.wlan.dbs=0
+ro.hardware.wlan.vendor=qcom
 
 # SoC
 ro.soc.manufacturer=Qualcomm
