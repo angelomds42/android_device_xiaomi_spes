@@ -106,6 +106,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.audio@6.0-impl \
     android.hardware.audio.effect@6.0-impl \
+    android.hardware.audio.sounddose-vendor-impl \
     android.hardware.audio.service \
     android.hardware.bluetooth.audio-impl
 
@@ -118,9 +119,12 @@ PRODUCT_PACKAGES += \
     libaudioroute \
     libaudioroute.vendor \
     libaudio-resampler \
+    libaudioroute.vendor \
+    libprocessgroup.vendor \
     libqcompostprocbundle \
     libqcomvisualizer \
     libqcomvoiceprocessing \
+    libstagefright_softomx_plugin.vendor \
     libtinycompress
 
 # Audio configs
@@ -155,8 +159,10 @@ PRODUCT_PACKAGES_DEBUG += \
 
 # Camera
 PRODUCT_PACKAGES += \
+    libutilscallstack.vendor \
     android.hardware.camera.provider@2.4-impl \
-    android.hardware.camera.provider@2.4-service_64
+    android.hardware.camera.provider@2.4-service_64 \
+    libpng.vendor
 
 PRODUCT_PACKAGES += \
     libcamera2ndk_vendor \
@@ -235,7 +241,10 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     android.hardware.gnss@1.1.vendor \
-    android.hardware.gnss@2.1.vendor
+    android.hardware.gnss@2.1.vendor \
+    libloc_net_iface \
+    libloc_net_iface.vendor \
+    liblocdiagiface
 
 PRODUCT_PACKAGES += \
     android.hardware.gnss.measurement_corrections@1.0.vendor \
@@ -409,10 +418,13 @@ PRODUCT_COPY_FILES += \
 
 # QMI
 PRODUCT_PACKAGES += \
+    libcurl.vendor \
     libjson \
+    libjsoncpp.vendor \
     libqti_vndfwk_detect \
     libqti_vndfwk_detect.vendor \
     libvndfwk_detect_jni.qti \
+    libsqlite.vendor \
     libvndfwk_detect_jni.qti.vendor
 
 # Quick Tap
