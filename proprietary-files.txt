@@ -1,4 +1,4 @@
-# All unpinned blobs below are extracted from miui_SPESGlobal_V14.0.2.0.TGCMIXM_f4e2e7b209_13.0. except IMS and RIL.
+# All unpinned blobs below are extracted from TKQ1.221114.001/V816.0.7.0.TGCMIXM.
 
 # ACDB
 vendor/etc/acdbdata/IDP/bengal-scubaidp-snd-card/IDP_Scuba_Bluetooth_cal.acdb
@@ -821,11 +821,7 @@ vendor/lib64/hw/vulkan.adreno.so
 system_ext/etc/permissions/com.android.hotwordenrollment.common.util.xml
 system_ext/framework/com.android.hotwordenrollment.common.util.jar
 
-<<<<<<< HEAD
-# IMS - from (fog) MIUI V14.0.3.0.TGEMIXM
-=======
 # IMS
->>>>>>> e6bc739 (spes: Cleaning up and refactoring)
 -system_ext/app/ImsRcsService/ImsRcsService.apk
 -system_ext/app/uceShimService/uceShimService.apk
 -system_ext/priv-app/ims/ims.apk
@@ -899,9 +895,6 @@ vendor/lib64/vendor.qti.ims.rcsconfig@2.0.so
 vendor/lib64/vendor.qti.ims.rcsconfig@2.1.so
 vendor/lib64/vendor.qti.imsrtpservice@3.0-service-Impl.so
 vendor/lib64/vendor.qti.imsrtpservice@3.0.so
-
-# IMS - from sweet V14.0.2.0.TKFMIXM
--system_ext/priv-app/ims/ims.apk|6a383ab360468c2b040c4ce618ac5188ab4fc655
 
 # IPA firmware
 vendor/etc/init/ipa_fws.rc
@@ -1380,7 +1373,6 @@ vendor/lib64/libwvhidl.so
 vendor/bin/cnss-daemon
 vendor/etc/wifi/aoa_cldb_falcon.bin
 vendor/etc/wifi/aoa_cldb_swl14.bin
-<<<<<<< HEAD
 
 # WiFi Display
 -system/framework/WfdCommon.jar
@@ -1451,5 +1443,3 @@ vendor/lib/libwfduibcsrcinterface_proprietary.so
 vendor/lib/libwfdutils_proprietary.so
 vendor/lib/vendor.qti.hardware.wifidisplaysession@1.0.so
 vendor/lib/vendor.qti.hardware.wifidisplaysessionl@1.0-halimpl.so
-=======
->>>>>>> e6bc739 (spes: Cleaning up and refactoring)
