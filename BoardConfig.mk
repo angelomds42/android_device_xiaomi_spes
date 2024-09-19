@@ -108,9 +108,7 @@ TARGET_OTA_ASSERT_DEVICE := spes,spesn
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
     $(DEVICE_PATH)/configs/hidl/framework_compatibility_matrix.xml \
     hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml \
-    hardware/xiaomi/vintf/xiaomi_framework_compatibility_matrix.xml \
-    vendor/lineage/config/device_framework_matrix.xml
-DEVICE_MATRIX_FILE := hardware/qcom-caf/common/compatibility_matrix.xml
+    vendor/hardware/xiaomi/vintf/xiaomi_framework_compatibility_matrix.xml
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/configs/hidl/manifest.xml
 ifeq ($(PRODUCT_NAME), lineage_spes)
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/configs/hidl/manifest-lineage.xml
@@ -215,9 +213,6 @@ TARGET_SYSTEM_EXT_PROP += $(DEVICE_PATH)/system_ext.prop
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
 
-# QCOM
-BOARD_USES_QCOM_HARDWARE := true
-
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
 
@@ -249,8 +244,8 @@ SOONG_CONFIG_SENSORS_XIAOMI += USES_SINGLE_TAP_SENSOR
 SOONG_CONFIG_SENSORS_XIAOMI_USES_SINGLE_TAP_SENSOR := true
 
 # Sepolicy
-include device/lineage/sepolicy/libperfmgr/sepolicy.mk
-include device/qcom/sepolicy_vndr/SEPolicy.mk
+include device/statix/sepolicy/libperfmgr/sepolicy.mk
+include device/qcom/sepolicy_vndr-legacy-um/SEPolicy.mk
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
 ifdef CR_VERSION
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private-cr

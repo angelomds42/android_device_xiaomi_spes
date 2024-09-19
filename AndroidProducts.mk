@@ -1,13 +1,13 @@
 #
-# Copyright (C) 2022 The LineageOS Project
+# Copyright (C) 2022 The StatixOS Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_spes.mk
+    $(LOCAL_DIR)/statix_spes.mk
 
 COMMON_LUNCH_CHOICES := \
-    lineage_spes-user \
-    lineage_spes-userdebug \
-    lineage_spes-eng
+    statix_spes-user \
+    statix_spes-userdebug \
+    statix_spes-eng

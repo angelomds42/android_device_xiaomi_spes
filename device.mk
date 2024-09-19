@@ -23,8 +23,8 @@ endif
 # Inherit the proprietary files
 $(call inherit-product, vendor/xiaomi/spes/spes-vendor.mk)
 
-ifeq ($(wildcard hardware/xiaomi/Android.bp),)
-$(error Error: cannot found hardware/xiaomi repository, please clone it and try to build again!)
+ifeq ($(wildcard vendor/hardware/xiaomi/Android.bp),)
+$(error Error: cannot found vendor/hardware/xiaomi repository, please clone it and try to build again!)
 endif
 
 # Add common definitions for Qualcomm
@@ -322,10 +322,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.light-service.xiaomi
 
-# Lineage Health
-PRODUCT_PACKAGES += \
-    vendor.lineage.health-service.default
-
 # Media
 PRODUCT_PACKAGES += \
     android.hardware.media.omx@1.0-service
@@ -401,16 +397,20 @@ PRODUCT_PACKAGES += \
     SpesTelephonyOverlay \
     SpesWifiOverlay
 
+# Platform
+PRODUCT_BOARD_PLATFORM := bengal
+PRODUCT_USES_QCOM_HARDWARE := true
+
 # Power
 PRODUCT_PACKAGES += \
     android.hardware.power@1.3.vendor \
-    android.hardware.power-service.lineage-libperfmgr \
+    android.hardware.power-service.statix-libperfmgr \
     libqti-perfd-client
 
 PRODUCT_SOONG_NAMESPACES += \
     hardware/google/interfaces \
     hardware/google/pixel \
-    hardware/lineage/interfaces/power-libperfmgr \
+    hardware/statix/interfaces/power-libperfmgr \
     hardware/qcom-caf/common/libqti-perfd-client
 
 # Perf
@@ -487,7 +487,7 @@ PRODUCT_COPY_FILES += \
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
-    hardware/xiaomi
+    vendor/hardware/xiaomi
 
 # Telephony
 PRODUCT_PACKAGES += \
