@@ -14,18 +14,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
 
 # Enable Virtual A/B
-ifneq ($(WITH_GMS),true)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
-else
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/compression_with_xor.mk)
-endif
 
 # Inherit the proprietary files
 $(call inherit-product, vendor/xiaomi/spes/spes-vendor.mk)
-
-ifeq ($(wildcard hardware/xiaomi/Android.bp),)
-$(error Error: cannot found hardware/xiaomi repository, please clone it and try to build again!)
-endif
 
 # Add common definitions for Qualcomm
 $(call inherit-product, hardware/qcom-caf/common/common.mk)
@@ -273,14 +265,8 @@ PRODUCT_PACKAGES += \
     android.hardware.gatekeeper@1.0.vendor
 
 # Health
-ifneq ($(wildcard vendor/qcom/opensource/healthd-ext/Android.bp),)
 PRODUCT_PACKAGES += \
-    android.hardware.health@2.1-impl-qti
-else
-PRODUCT_PACKAGES += \
-    android.hardware.health@2.1-impl
-endif
-PRODUCT_PACKAGES += \
+    android.hardware.health@2.1-impl-qti \
     android.hardware.health@2.1-service
 
 # HIDL
@@ -407,12 +393,6 @@ PRODUCT_PACKAGES += \
     android.hardware.power-service.lineage-libperfmgr \
     libqti-perfd-client
 
-PRODUCT_SOONG_NAMESPACES += \
-    hardware/google/interfaces \
-    hardware/google/pixel \
-    hardware/lineage/interfaces/power-libperfmgr \
-    hardware/qcom-caf/common/libqti-perfd-client
-
 # Perf
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
@@ -454,7 +434,6 @@ PRODUCT_PACKAGES += \
 # Rootdir
 PRODUCT_PACKAGES += \
     init.mdm.sh \
-    init.qcom.post_boot.sh \
     init.qcom.sh \
     init.qcom.usb.sh
 
@@ -481,6 +460,10 @@ PRODUCT_PACKAGES += \
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
+    hardware/google/interfaces \
+    hardware/google/pixel \
+    hardware/lineage/interfaces/power-libperfmgr \
+    hardware/qcom-caf/common/libqti-perfd-client \
     hardware/xiaomi
 
 # Telephony
@@ -527,11 +510,6 @@ PRODUCT_COPY_FILES += \
 # VNDK
 PRODUCT_EXTRA_VNDK_VERSIONS := 30
 
-# WiFi firmware symlinks
-PRODUCT_PACKAGES += \
-    firmware_wlan_mac.bin_symlink \
-    firmware_WCNSS_qcom_cfg.ini_symlink
-
 # WiFi
 PRODUCT_PACKAGES += \
     android.hardware.wifi-service \
@@ -545,6 +523,10 @@ PRODUCT_PACKAGES += \
     wpa_supplicant \
     wpa_supplicant.conf
 
+PRODUCT_PACKAGES += \
+    firmware_wlan_mac.bin_symlink \
+    firmware_WCNSS_qcom_cfg.ini_symlink
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini \
     $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
@@ -557,15 +539,7 @@ PRODUCT_PACKAGES += \
     libjsoncpp.vendor \
     libpng.vendor
 
-ifdef CR_VERSION
-PRODUCT_BOOT_JARS += \
-    WfdCommon
-endif
-
 # XiaomiParts
 PRODUCT_PACKAGES += \
     XiaomiParts
-
-# No Cutout Overlay
-PRODUCT_PACKAGES += \
-    NoCutoutOverlay
+    

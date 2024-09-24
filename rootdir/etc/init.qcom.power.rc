@@ -32,32 +32,67 @@ on enable-low-power
 on property:sys.boot_completed=1
     trigger enable-low-power
 
-    # Runtime fs tuning
-    write /sys/block/sda/queue/nr_requests 128
-    write /sys/block/sda/queue/iostats 1
+    # Back to default VM settings
+    write /proc/sys/vm/dirty_expire_centisecs 3000
+    write /proc/sys/vm/dirty_background_ratio 10
 
     # Block layer tuning: discard chunk size up to 128MB
     # Otherwise, contiguous discards can be merged
     write /sys/block/sda/queue/discard_max_bytes 134217728
 
-    # Back to default VM settings
-    write /proc/sys/vm/dirty_expire_centisecs 3000
-    write /proc/sys/vm/dirty_background_ratio 10
+    # Configure latfloor
+    write /sys/devices/platform/soc/soc:qcom,cpu0-cpu-ddr-latfloor/devfreq/soc:qcom,cpu0-cpu-ddr-latfloor/governor "compute"
+    write /sys/devices/platform/soc/soc:qcom,cpu0-cpu-ddr-latfloor/devfreq/soc:qcom,cpu0-cpu-ddr-latfloor/polling_interval 10
 
-    # Setup runtime cpusets
-    write /dev/cpuset/top-app/cpus 0-7
-    write /dev/cpuset/foreground/cpus 0-7
-    write /dev/cpuset/background/cpus 0-1
-    write /dev/cpuset/system-background/cpus 0-3
-    write /dev/cpuset/restricted/cpus 0-3
+    write /sys/devices/platform/soc/soc:qcom,cpu4-cpu-ddr-latfloor/devfreq/soc:qcom,cpu4-cpu-ddr-latfloor/governor "compute"
+    write /sys/devices/platform/soc/soc:qcom,cpu4-cpu-ddr-latfloor/devfreq/soc:qcom,cpu4-cpu-ddr-latfloor/polling_interval 10
 
-    # Setup runtime schedTune
-    write /dev/stune/foreground/schedtune.prefer_idle 1
-    write /dev/stune/foreground/schedtune.boost 0
-    write /dev/stune/schedtune.prefer_idle 0
-    write /dev/stune/schedtune.boost 0
-    write /dev/stune/top-app/schedtune.prefer_idle 1
-    write /dev/stune/top-app/schedtune.boost 10
+    # Configure memlat
+    write /sys/devices/platform/soc/soc:qcom,cpu0-cpu-ddr-lat/devfreq/soc:qcom,cpu0-cpu-ddr-lat/governor "mem_latency"
+    write /sys/devices/platform/soc/soc:qcom,cpu0-cpu-ddr-lat/devfreq/soc:qcom,cpu0-cpu-ddr-lat/polling_interval 10
+    write /sys/devices/platform/soc/soc:qcom,cpu0-cpu-ddr-lat/devfreq/soc:qcom,cpu0-cpu-ddr-lat/mem_latency/ratio_ceil 400
+
+    write /sys/devices/platform/soc/soc:qcom,cpu4-cpu-ddr-lat/devfreq/soc:qcom,cpu4-cpu-ddr-lat/governor "mem_latency"
+    write /sys/devices/platform/soc/soc:qcom,cpu4-cpu-ddr-lat/devfreq/soc:qcom,cpu4-cpu-ddr-lat/polling_interval 10
+    write /sys/devices/platform/soc/soc:qcom,cpu4-cpu-ddr-lat/devfreq/soc:qcom,cpu4-cpu-ddr-lat/mem_latency/ratio_ceil 400
+
+    # Configure schedutil rate limits times
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/up_rate_limit_us 500
+    write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/up_rate_limit_us 500
+
+    # Configure scheduler
+    write /proc/sys/kernel/sched_upmigrate "65 85"
+    write /proc/sys/kernel/sched_downmigrate "60 75"
+    write /proc/sys/kernel/sched_group_upmigrate 95
+    write /proc/sys/kernel/sched_group_downmigrate 75
+    write /proc/sys/kernel/sched_min_task_util_for_boost 0
+    write /proc/sys/kernel/sched_min_task_util_for_colocation 0
+
+    # Enable bus-dcvs
+    write /sys/devices/platform/soc/soc:qcom,cpu-cpu-ddr-bw/devfreq/soc:qcom,cpu-cpu-ddr-bw/governor "bw_hwmon"
+    write /sys/devices/platform/soc/soc:qcom,cpu-cpu-ddr-bw/devfreq/soc:qcom,cpu-cpu-ddr-bw/polling_interval 50
+    write /sys/devices/platform/soc/soc:qcom,cpu-cpu-ddr-bw/devfreq/soc:qcom,cpu-cpu-ddr-bw/min_freq 762
+    write /sys/devices/platform/soc/soc:qcom,cpu-cpu-ddr-bw/devfreq/soc:qcom,cpu-cpu-ddr-bw/bw_hwmon/mbps_zones "2288 3440 4173 5195 5859 7759 10322 11863 13763 15960"
+    write /sys/devices/platform/soc/soc:qcom,cpu-cpu-ddr-bw/devfreq/soc:qcom,cpu-cpu-ddr-bw/bw_hwmon/io_percent 85
+    write /sys/devices/platform/soc/soc:qcom,cpu-cpu-ddr-bw/devfreq/soc:qcom,cpu-cpu-ddr-bw/bw_hwmon/sample_ms 4
+    write /sys/devices/platform/soc/soc:qcom,cpu-cpu-ddr-bw/devfreq/soc:qcom,cpu-cpu-ddr-bw/bw_hwmon/decay_rate 90
+    write /sys/devices/platform/soc/soc:qcom,cpu-cpu-ddr-bw/devfreq/soc:qcom,cpu-cpu-ddr-bw/bw_hwmon/bw_step 190
+    write /sys/devices/platform/soc/soc:qcom,cpu-cpu-ddr-bw/devfreq/soc:qcom,cpu-cpu-ddr-bw/bw_hwmon/hist_memory 20
+    write /sys/devices/platform/soc/soc:qcom,cpu-cpu-ddr-bw/devfreq/soc:qcom,cpu-cpu-ddr-bw/bw_hwmon/hyst_length 0
+    write /sys/devices/platform/soc/soc:qcom,cpu-cpu-ddr-bw/devfreq/soc:qcom,cpu-cpu-ddr-bw/bw_hwmon/down_thres 80
+    write /sys/devices/platform/soc/soc:qcom,cpu-cpu-ddr-bw/devfreq/soc:qcom,cpu-cpu-ddr-bw/bw_hwmon/guard_band_mbps 0
+    write /sys/devices/platform/soc/soc:qcom,cpu-cpu-ddr-bw/devfreq/soc:qcom,cpu-cpu-ddr-bw/bw_hwmon/up_scale 250
+    write /sys/devices/platform/soc/soc:qcom,cpu-cpu-ddr-bw/devfreq/soc:qcom,cpu-cpu-ddr-bw/bw_hwmon/idle_mbps 1600
+
+    # Enable powersaving
+    write /sys/module/lpm_levels/parameters/sleep_disabled 0
+
+    # Enable UFS powersaving
+    write /sys/devices/platform/soc/4804000.ufshc/clkgate_enable 1
+
+    # Runtime fs tuning
+    write /sys/block/sda/queue/nr_requests 128
+    write /sys/block/sda/queue/iostats 1
 
     # Setup runtime blkio
     # value for group_idle is us
@@ -66,46 +101,27 @@ on property:sys.boot_completed=1
     write /dev/blkio/blkio.group_idle 2000
     write /dev/blkio/background/blkio.group_idle 0
 
-    # Enable UFS powersaving
-    write /sys/devices/platform/soc/4804000.ufshc/clkgate_enable 1
+    # Setup runtime cpusets
+    write /dev/cpuset/top-app/cpus 0-7
+    write /dev/cpuset/foreground/cpus 0-7
+    write /dev/cpuset/background/cpus 0-1
+    write /dev/cpuset/system-background/cpus 0-3
+    write /dev/cpuset/restricted/cpus 0-3
 
-    # Enable powersaving
-    write /sys/module/lpm_levels/parameters/sleep_disabled 0
+    # Turn off scheduler boost at the end
+    write /proc/sys/kernel/sched_boost 0
 
 on early-init
-    # configure governor settings
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor schedutil
-    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/up_rate_limit_us 500
-    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/down_rate_limit_us 20000
-
-    # configure governor settings for big cluster
-    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor schedutil
-    write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/up_rate_limit_us 500
-    write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/down_rate_limit_us 20000
+    # Enable scheduler boost
+    write /proc/sys/kernel/sched_boost 1
 
     # Disable UFS clock scaling
     write /sys/bus/platform/devices/4804000.ufshc/clkscale_enable 0
 
 on init
     # Setup permission for Power HAL
-    chown system system /dev/stune/top-app/schedtune.boost
     chown system system /dev/cpu_dma_latency
-
-    chmod 0664 /dev/stune/top-app/schedtune.boost
     chmod 0664 /dev/cpu_dma_latency
-
-    # Boot time cpuset and stune
-    write /dev/cpuset/top-app/cpus 0-7
-    write /dev/cpuset/foreground/cpus 0-7
-    write /dev/cpuset/background/cpus 0-5
-    write /dev/cpuset/system-background/cpus 0-5
-    write /dev/cpuset/restricted/cpus 2-5
-    write /dev/stune/foreground/schedtune.prefer_idle 1
-    write /dev/stune/foreground/schedtune.boost 100
-    write /dev/stune/schedtune.prefer_idle 1
-    write /dev/stune/schedtune.boost 100
-    write /dev/stune/top-app/schedtune.prefer_idle 1
-    write /dev/stune/top-app/schedtune.boost 100
 
     # Boot time fs tuning
     write /sys/block/sda/queue/iostats 0
@@ -119,7 +135,7 @@ on init
     # Disable powersaving
     write /sys/module/lpm_levels/parameters/sleep_disabled 1
 
-    # bring back all cores
+    # Bring back all cores
     write /sys/devices/system/cpu/cpu0/online 1
     write /sys/devices/system/cpu/cpu1/online 1
     write /sys/devices/system/cpu/cpu2/online 1
@@ -136,18 +152,8 @@ on init
     chown system system /dev/cpuset/camera-daemon-dedicated/tasks
     chmod 0664 /dev/cpuset/camera-daemon-dedicated/tasks
 
-    # create an stune group for camera-specific processes
-    mkdir /dev/stune/camera-daemon
-    write /dev/stune/camera-daemon/schedtune.prefer_idle 1
-    write /dev/stune/camera-daemon/schedtune.boost 0
-    chown system system /dev/stune/camera-daemon
-    chown system system /dev/stune/camera-daemon/tasks
-    chmod 0664 /dev/stune/camera-daemon/tasks
-
-    # set default schedTune value for camera-daemon
-    write /dev/stune/camera-daemon/schedtune.prefer_idle 1
-    write /dev/stune/camera-daemon/schedtune.boost 0
-
-    # report max frequency to unity tasks.
-    write /proc/sys/kernel/sched_lib_name "com.miHoYo., com.activision., com.epicgames, com.dts., UnityMain, libunity.so, libil2cpp.so, libmain.so, libcri_vip_unity.so, libopus.so, libxlua.so, libUE4.so, libAsphalt9.so, libnative-lib.so, libRiotGamesApi.so, libResources.so, libagame.so, libapp.so, libflutter.so, libMSDKCore.so, libFIFAMobileNeon.so, libUnreal.so, libEOSSDK.so, libcocos2dcpp.so, libfb.so""
-    write /proc/sys/kernel/sched_lib_mask_force 255
+    # Fix ECC Crash
+    write /sys/module/lpm_levels/system/pwr/pwr-l2-gdhs/idle_enabled N
+    write /sys/module/lpm_levels/system/perf/perf-l2-gdhs/idle_enabled N
+    write /sys/module/lpm_levels/system/pwr/pwr-l2-gdhs/suspend_enabled N
+    write /sys/module/lpm_levels/system/perf/perf-l2-gdhs/suspend_enabled N
