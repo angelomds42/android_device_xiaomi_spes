@@ -6,6 +6,8 @@
 
 DEVICE_PATH := device/xiaomi/spes
 
+TARGET_OTA_PACKAGE_KEY_PATH := $(PARASITE_OTA_KEY_PATH)
+
 # A/B
 AB_OTA_UPDATER := true
 
@@ -79,7 +81,7 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
     $(DEVICE_PATH)/configs/vintf/framework_compatibility_matrix.xml \
     hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml \
     hardware/xiaomi/vintf/xiaomi_framework_compatibility_matrix.xml \
-    vendor/lineage/config/device_framework_matrix.xml
+    vendor/aosp/config/device_framework_matrix.xml
 DEVICE_MATRIX_FILE := hardware/qcom-caf/common/compatibility_matrix.xml
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/configs/vintf/manifest.xml
 ODM_MANIFEST_SKUS += k7tn
@@ -204,14 +206,21 @@ TARGET_SCREEN_DENSITY := 440
 VENDOR_SECURITY_PATCH := 2024-08-01
 
 # Verified Boot
+TARGET_BUILD_FULLY_SIGN := true
+include vendor/parasite/signatures/BoardConfigSign.mk
+
+TARGET_AVB_KEY_PATH := $(PARASITE_AVB_KEY_PATH)
+TARGET_AVB_ALGORITHM := SHA256_RSA4096
+BOARD_AVB_KEY_PATH := $(TARGET_AVB_KEY_PATH)
+BOARD_AVB_ALGORITHM :=  $(TARGET_AVB_ALGORITHM)
 BOARD_AVB_ENABLE := true
 BOARD_AVB_VBMETA_SYSTEM := system system_ext product
-BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
-BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA2048
+BOARD_AVB_VBMETA_SYSTEM_KEY_PATH :=  $(TARGET_AVB_KEY_PATH)
+BOARD_AVB_VBMETA_SYSTEM_ALGORITHM :=  $(TARGET_AVB_ALGORITHM)
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 1
-BOARD_AVB_RECOVERY_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
-BOARD_AVB_RECOVERY_ALGORITHM := SHA256_RSA4096
+BOARD_AVB_RECOVERY_KEY_PATH := $(TARGET_AVB_KEY_PATH)
+BOARD_AVB_RECOVERY_ALGORITHM := $(TARGET_AVB_ALGORITHM)
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX := 1
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
 BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
