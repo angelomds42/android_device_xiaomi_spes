@@ -22,6 +22,9 @@ $(call inherit-product, vendor/xiaomi/spes/spes-vendor.mk)
 # Add common definitions for Qualcomm
 $(call inherit-product, hardware/qcom-caf/common/common.mk)
 
+# Signing build
+TARGET_BUILD_FULLY_SIGN := true
+
 # Enable Dynamic partition
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
