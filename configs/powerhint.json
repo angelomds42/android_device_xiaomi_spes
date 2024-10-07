@@ -683,6 +683,47 @@
       "Node": "GPUMaxFreq",
       "Duration": 0,
       "Value": "0"
+    },
+    {
+      "PowerHint": "DISPLAY_CHANGE",
+      "Type": "DoHint",
+      "Value": "DISPLAY_CHANGE_GPU"
+    },
+    {
+      "PowerHint": "DISPLAY_CHANGE",
+      "Node": "CPUBigClusterMaxFreq",
+      "Duration": 5000,
+      "Value": "2400000"
+    },
+    {
+      "PowerHint": "DISPLAY_CHANGE",
+      "Node": "CPULittleClusterMaxFreq",
+      "Duration": 5000,
+      "Value": "1900800"
+    },
+    {
+      "PowerHint": "DISPLAY_CHANGE",
+      "Node": "TAUClampBoost",
+      "Duration": 5000,
+      "Value": "76.50"
+    },
+    {
+      "PowerHint": "DISPLAY_CHANGE",
+      "Node": "FGUClampBoost",
+      "Duration": 5000,
+      "Value": "15.90"
+    },
+    {
+      "PowerHint": "DISPLAY_CHANGE",
+      "Node": "CPULittleClusterDownRateLimitUs",
+      "Duration": 5000,
+      "Value": "5000"
+    },
+    {
+      "PowerHint": "DISPLAY_CHANGE",
+      "Node": "CPUBigClusterDownRateLimitUs",
+      "Duration": 5000,
+      "Value": "20000"
     }
   ]
 }
