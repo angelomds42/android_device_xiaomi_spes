@@ -111,9 +111,12 @@ on boot
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 300000
     write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/hispeed_freq 1344000
 
-    # DT2W
-    chown system system /sys/touchpanel/double_tap
-    chmod 0660 /sys/touchpanel/double_tap
+    # Double Tap Sensor
+    chown system system /sys/devices/platform/soc/4a88000.i2c/i2c-1/1-0038/double_tap_pressed
+    chmod 0660 /sys/devices/platform/soc/4a88000.i2c/i2c-1/1-0038/double_tap_pressed
+    # Single Tap Sensor
+    chown system system /sys/devices/platform/soc/4a88000.i2c/i2c-1/1-0038/single_tap_pressed
+    chmod 0660 /sys/devices/platform/soc/4a88000.i2c/i2c-1/1-0038/single_tap_pressed
 
     # USB controller configuration
     setprop vendor.usb.rndis.func.name "gsi"
