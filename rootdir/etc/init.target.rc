@@ -118,14 +118,6 @@ on boot
     chown system system /sys/devices/platform/soc/4a88000.i2c/i2c-1/1-0038/single_tap_pressed
     chmod 0660 /sys/devices/platform/soc/4a88000.i2c/i2c-1/1-0038/single_tap_pressed
 
-    # USB controller configuration
-    setprop vendor.usb.rndis.func.name "gsi"
-    setprop vendor.usb.rmnet.func.name "gsi"
-    setprop vendor.usb.rmnet.inst.name "rmnet"
-    setprop vendor.usb.dpl.inst.name "dpl"
-    setprop vendor.usb.qdss.inst.name "qdss"
-    setprop vendor.usb.controller 4e00000.dwc3
-
     # Sensors
     start vendor.sensors
 
@@ -140,13 +132,9 @@ on boot
 on boot && property:persist.vendor.usb.controller.default=*
     setprop vendor.usb.controller ${persist.vendor.usb.controller.default}
 
-on property:vendor.usb.controller=*
-    setprop sys.usb.controller ${vendor.usb.controller}
-
 on charger
     chown system system /sys/class/backlight/panel0-backlight/brightness
     setprop persist.sys.usb.config mass_storage
-    setprop sys.usb.configfs 1
     setprop vendor.usb.controller 4e00000.dwc3
     start mi_thermald
     start vendor.power_off_alarm
