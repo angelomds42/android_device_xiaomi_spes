@@ -77,6 +77,7 @@ function blob_fixup() {
         vendor/lib64/camera/components/com.qti.node.mialgocontrol.so)
             [ "$2" = "" ] && return 0
             llvm-strip --strip-debug "${2}"
+            grep -q "libpiex_shim.so" "${2}" || "${PATCHELF}" --add-needed "libpiex_shim.so" "${2}"
             ;;
         vendor/lib64/hw/fingerprint.goodix.default.so)
             [ "$2" = "" ] && return 0
