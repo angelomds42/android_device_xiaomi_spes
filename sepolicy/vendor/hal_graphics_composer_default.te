@@ -1,3 +1,6 @@
 binder_call(hal_graphics_composer_default, hal_displayfeature_default)
 
 hal_client_domain(hal_graphics_composer_default, hal_displayfeature);
+
+get_prop(hal_graphics_composer_default, graphics_config_writable_prop)
+get_prop(hal_graphics_composer_default, graphics_config_prop)
